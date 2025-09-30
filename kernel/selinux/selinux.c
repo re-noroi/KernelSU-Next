@@ -121,7 +121,11 @@ bool ksu_is_ksu_domain()
 	return result;
 }
 
+#ifdef CONFIG_KSU_SUSFS
 bool ksu_is_zygote(void *sec)
+#else
+bool is_zygote(void *sec)
+#endif
 {
 	struct task_security_struct *tsec = (struct task_security_struct *)sec;
 	if (!tsec) {
